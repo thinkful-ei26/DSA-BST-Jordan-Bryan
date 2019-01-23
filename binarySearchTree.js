@@ -168,6 +168,21 @@ function thirdMaxValue(node) {
   }
 }
 
+//         5
+//     2       7
+//   1  3    6   9
+
+// 1
+// 2
+// 3
+// 4
+// 5
+// 6
+// 7
+//       4
+//     2    6
+//   1  3  5  7
+
 function heightBalanced(root) {
   if (!root) {
     return true
@@ -184,21 +199,7 @@ function heightBalanced(root) {
 }
 
 
-//         5
-//     2       7
-//   1  3    6   9
-// .5
 
-// 1
-// 2
-// 3
-// 4
-// 5
-// 6
-// 7
-//       4
-//     2    6
-//   1  3  5  7
 
 const nbst = new BinarySearchTree()
 nbst.insert(4, 4)
