@@ -11,19 +11,19 @@ class BinarySearchTree {
 
   insert(key, value) {
     if (this.key === null) {
-      this.key = key
-      this.value = value
+      this.key = key;
+      this.value = value;
     } else if (key < this.key) {
       if (this.left === null) {
         this.left = new BinarySearchTree(key, value, this)
       } else {
-        this.left.insert(key, value)
+        this.left.insert(key, value);
       }
     } else {
       if (this.right === null) {
         this.right = new BinarySearchTree(key, value, this)
       } else {
-        this.right.insert(key, value)
+        this.right.insert(key, value);
       }
     }
   }
@@ -105,22 +105,115 @@ class BinarySearchTree {
   }
 }
 
+function height(BST) {
+  if (!BST) {
+    return 0
+  }
+  let leftHeight = height(BST.left)
+  let rightHeight = height(BST.right)
+  return Math.max(leftHeight, rightHeight) + 1
+}
+
+function isSearchTree(BST) {
+  if (!BST) {
+    return true
+  }
+  if (BST.left != null && BST.left.value > BST.value) {
+    return false
+  }
+  if (BST.right !== null && BST.right.value < BST.value) {
+    return false
+  }
+  if (!isSearchTree(BST.right) || !isSearchTree(BST.left)) {
+    return false
+  }
+  return true
+}
+
+//bst should contain a root
+//should have left and right child
+//should contain keys/contains
+//if left child exists and left child's value is greater than the given BST value, return false
+//if right child exists and right child is greater than the given BST value, return false
+//if neither right or left child exist, return true
+//else return false
+//create a temp data store
+//recursively call a function that takes the value and find out if
+//parent or children exist
+
+// 3rd largest node
+// Given sorted search tree
+// Find right most child
+// Find parent of right most child
+// Return left child of parent (if any)
+// If no left child, return parent of parent
+// Congrats, 3rd largest node
+
+
+//Work on in future trying to find all future possibilities
+function thirdMaxValue(node) {
+  if (!node) {
+    return 0
+  }
+  if (node.right) {
+    return thirdMaxValue(node.right)
+  }
+  if (node.left) {
+    return node.parent.value
+  }
+  if (node.parent.left) {
+    return node.parent.left.value
+  } else {
+    return node.parent.parent.value
+  }
+}
+
+function heightBalanced(root) {
+  if (!root) {
+    return true
+  }
+  let leftHeight = height(root.left)
+  console.log(leftHeight)
+  let rightHeight = height(root.right)
+  console.log(rightHeight)
+  if (Math.abs(leftHeight - rightHeight) <= 1 && heightBalanced(root.left) && heightBalanced(root.right)) {
+    return true
+  } else {
+    return false
+  }
+}
+
+
 //         5
 //     2       7
 //   1  3    6   9
 // .5
 
+// 1
+// 2
+// 3
+// 4
+// 5
+// 6
+// 7
+//       4
+//     2    6
+//   1  3  5  7
+
 const nbst = new BinarySearchTree()
-nbst.insert(3, 3)
-nbst.insert(1, 1)
 nbst.insert(4, 4)
-nbst.insert(6, 6)
-nbst.insert(9, 9)
 nbst.insert(2, 2)
+nbst.insert(1, 1)
+nbst.insert(3, 3)
+nbst.insert(6, 6)
 nbst.insert(5, 5)
 nbst.insert(7, 7)
-nbst.remove(6)
-console.log(nbst.find(5))
-console.log(nbst.find(7))
+// console.log(nbst.find(5))
+// console.log(nbst.find(7))
+// console.log(nbst)
+console.log(height(nbst))
+// console.log(isSearchTree(nbst))
+// console.log(thirdMaxValue(nbst))
+console.log(heightBalanced(nbst))
 
 // console.log(nbst)
