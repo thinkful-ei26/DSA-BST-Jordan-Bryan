@@ -198,14 +198,6 @@ function heightBalanced(root) {
   }
 }
 
-//pre-order: 25, 15, 10, 4, 12, 24, 18, 22, 50, 35, 31, 44, 70, 66, 90
-//process node, recursively step left, recursively step right 
-
-//in order: 4, 10, 12, 15, 18, 22, 24, 25, 31, 35, 44, 50, 66, 70, 90
-
-
-//post-order: 4, 12, 10, 22, 18, 24, 15, 31, 44, 35, 66, 90, 70, 50, 25
-
 //        25
 //           90
 //           / \
@@ -220,8 +212,6 @@ function heightBalanced(root) {
 // 10 12
 // /\
 // 4
-
-//key, value, parent, left, right = properties of BST
 
 let BST = new BinarySearchTree()
 
@@ -264,6 +254,31 @@ function inOrder(root){
   }
 };
 
+function maxProfit(prices){
+
+  let buy = prices[0];
+  let sell = prices[0];
+  let profit = 0;
+
+  if(!prices){
+    return;
+  }
+
+  for(let i=1; i<prices.length;i++){
+    sell = prices[i];
+    if(sell < buy){
+      buy = sell;
+    }
+    if(sell - buy > profit){
+      profit = sell - buy
+    }
+  }
+  return profit;
+}
+
+console.log(maxProfit([128, 97, 121, 98, 97, 105]))
+
+
 BST.insert(25, 25);
 BST.insert(15, 15);
 BST.insert(50, 50);
@@ -280,10 +295,9 @@ BST.insert(66, 66);
 BST.insert(90, 90);
 BST.insert(22, 22);
 
-
 // console.log(preOrder(BST))
 // console.log(postOrder(BST))
-console.log(inOrder(BST))
+// console.log(inOrder(BST))
 
 
 
