@@ -223,25 +223,35 @@ function heightBalanced(root) {
 
 //key, value, parent, left, right = properties of BST
 
-// function inOrder(node){
-
-// };
-
-//node is handled before the branches
-//base case: 
-
 let BST = new BinarySearchTree()
 
-function preOrder(node){
-  if (!node){
+//node is handled before the branches
+function preOrder(root){
+  if (!root){
     return;
   }
-  if (node){
-    console.log(node.value);
-    preOrder(node.left);
-    preOrder(node.right);
+  if (root){
+    console.log(root.value);
+    preOrder(root.left);
+    preOrder(root.right);
   };
 };
+
+//root is handled after the branches
+function postOrder(root){
+  if(!root){
+    return;
+  }
+  if (root){
+    postOrder(root.left);
+    postOrder(root.right);
+    console.log(root.value);
+  };
+};
+
+// function inOrder(root){
+
+// };
 
 BST.insert(25, 25);
 BST.insert(15, 15);
@@ -260,12 +270,9 @@ BST.insert(90, 90);
 BST.insert(22, 22);
 
 
-console.log(preOrder(BST))
+// console.log(preOrder(BST))
+console.log(postOrder(BST))
 
-
-// function postOrder(node){
-
-// };
 
 
 const nbst = new BinarySearchTree()
