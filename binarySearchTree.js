@@ -225,7 +225,8 @@ function heightBalanced(root) {
 
 let BST = new BinarySearchTree()
 
-//node is handled before the branches
+//root is handled before the branches
+//root, left, right
 function preOrder(root){
   if (!root){
     return;
@@ -238,6 +239,7 @@ function preOrder(root){
 };
 
 //root is handled after the branches
+//left, right, root
 function postOrder(root){
   if(!root){
     return;
@@ -249,9 +251,18 @@ function postOrder(root){
   };
 };
 
-// function inOrder(root){
-
-// };
+//root is handled after the left branch but before the right
+//left, root, right
+function inOrder(root){
+  if (!root){
+    return;
+  }
+  if (root){
+    inOrder(root.left);
+    console.log(root.value);
+    inOrder(root.right);
+  }
+};
 
 BST.insert(25, 25);
 BST.insert(15, 15);
@@ -271,7 +282,8 @@ BST.insert(22, 22);
 
 
 // console.log(preOrder(BST))
-console.log(postOrder(BST))
+// console.log(postOrder(BST))
+console.log(inOrder(BST))
 
 
 
