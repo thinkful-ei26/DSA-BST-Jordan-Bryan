@@ -18,7 +18,7 @@ class BinarySearchTree {
         this.left = new BinarySearchTree(key, value, this)
       } else {
         this.left.insert(key, value);
-      }
+      } 
     } else {
       if (this.right === null) {
         this.right = new BinarySearchTree(key, value, this)
@@ -198,7 +198,74 @@ function heightBalanced(root) {
   }
 }
 
+//pre-order: 25, 15, 10, 4, 12, 24, 18, 22, 50, 35, 31, 44, 70, 66, 90
+//process node, recursively step left, recursively step right 
 
+//in order: 4, 10, 12, 15, 18, 22, 24, 25, 31, 35, 44, 50, 66, 70, 90
+
+
+//post-order: 4, 12, 10, 22, 18, 24, 15, 31, 44, 35, 66, 90, 70, 50, 25
+
+//        25
+//           90
+//           / \
+//          50  70
+//      /      /
+//     24    66
+//    / \   / \
+//   18 22 35 44
+//   / \  / \/ \
+//   15  31
+//  / \
+// 10 12
+// /\
+// 4
+
+//key, value, parent, left, right = properties of BST
+
+// function inOrder(node){
+
+// };
+
+//node is handled before the branches
+//base case: 
+
+let BST = new BinarySearchTree()
+
+function preOrder(node){
+  if (!node){
+    return;
+  }
+  if (node){
+    console.log(node.value);
+    preOrder(node.left);
+    preOrder(node.right);
+  };
+};
+
+BST.insert(25, 25);
+BST.insert(15, 15);
+BST.insert(50, 50);
+BST.insert(10, 10);
+BST.insert(24, 24);
+BST.insert(35, 35);
+BST.insert(70, 70);
+BST.insert(4, 4);
+BST.insert(12, 12);
+BST.insert(18, 18);
+BST.insert(31, 31);
+BST.insert(44, 44);
+BST.insert(66, 66);
+BST.insert(90, 90);
+BST.insert(22, 22);
+
+
+console.log(preOrder(BST))
+
+
+// function postOrder(node){
+
+// };
 
 
 const nbst = new BinarySearchTree()
@@ -212,9 +279,9 @@ nbst.insert(7, 7)
 // console.log(nbst.find(5))
 // console.log(nbst.find(7))
 // console.log(nbst)
-console.log(height(nbst))
+// console.log(height(nbst))
 // console.log(isSearchTree(nbst))
 // console.log(thirdMaxValue(nbst))
-console.log(heightBalanced(nbst))
+// console.log(heightBalanced(nbst))
 
 // console.log(nbst)
